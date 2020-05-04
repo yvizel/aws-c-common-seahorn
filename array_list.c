@@ -35,13 +35,15 @@ void ensure_array_list_has_allocated_data_member(struct aws_array_list *const li
     list->current_size = nd_sizet();
     list->length = nd_sizet();
     list->item_size = nd_sizet();
+    /// XXX Cannot do this for now
+    //list->data = bounded_malloc(list->current_size);
+    list->data = bounded_malloc(MAX_INITIAL_ITEM_ALLOCATION * MAX_ITEM_SIZE);
 
     /// XXX Need to take care of fail allocator
     if (list->current_size == 0 && list->length == 0) {
         assume(list->data == NULL);
         list->alloc = NULL;//can_fail_allocator();
     } else {
-        list->data = bounded_malloc(list->current_size);
         list->alloc = NULL;//nondet_bool() ? NULL : can_fail_allocator();
     }
 }
