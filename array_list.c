@@ -108,11 +108,15 @@ int main() {
     from.length = nd_sizet();
     assume (from.current_size > 0 && from.length > 0);
     from.item_size = nd_sizet();
+    from.data = bounded_malloc(MAX_INITIAL_ITEM_ALLOCATION * MAX_ITEM_SIZE);
+    from.alloc = NULL;
 
     to.current_size = nd_sizet();
     to.length = nd_sizet();
     assume (to.current_size > 0 && to.length > 0);
     to.item_size = nd_sizet();
+    to.data = bounded_malloc(MAX_INITIAL_ITEM_ALLOCATION * MAX_ITEM_SIZE);
+    to.alloc = NULL;
 #endif
 
     /* assumptions */
