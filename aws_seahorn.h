@@ -14,6 +14,6 @@
 #define MAX_MALLOC (SIZE_MAX >> (CBMC_OBJECT_BITS + 1))
 
 void *bounded_malloc(size_t size) {
-    __CPROVER_assume(size <= MAX_MALLOC);
+    assume(size <= MAX_MALLOC);
     return malloc(size);
 }
